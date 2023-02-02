@@ -17,6 +17,8 @@ def get_folder_files(abspath: str) -> list:
     data = list()
     for root, subfolder, files in os.walk(abspath):
         data.extend(os.path.join(root, file) for file in files)
+    if not data:
+        raise ValueError('No Files!')
     return data
 
 
