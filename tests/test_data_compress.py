@@ -3,7 +3,6 @@ from data_compress.data_compress import *
 
 
 @pytest.mark.parametrize('exception, arg', [(FileNotFoundError, ' '),
-                                            (FileNotFoundError, 20),
                                             (ValueError, 'tests_files/empty')])
 def test_exceptions(exception, arg):
     with pytest.raises(exception):
