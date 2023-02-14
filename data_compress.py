@@ -1,6 +1,7 @@
 import os
 import zipfile as zip
 from datetime import datetime
+from os.path import join, relpath
 
 
 def data_compress(data: list) -> None:
@@ -15,13 +16,13 @@ def get_folder_files(abspath: str) -> list:
         raise FileNotFoundError('Path not found!')
     data = list()
     for root, subfolder, files in os.walk(abspath):
-        data.extend(os.path.join(root, file) for file in files)
+        data.extend(join(root, file) for file in files)
     if not data:
-        raise ValueError('No Files!')
-    return data
+        raise ValueError('No files!')
+    return [relpath(file) for file in data]
 
 
 if __name__ == '__main__':
-    abspath = fr'C:\Users\petrov_pp\Desktop\files'
+    abspath = rf'C:\Users\shadmin.LAN\Desktop\clean-logs-txt\files'
     data = get_folder_files(abspath)
     data_compress(data)
